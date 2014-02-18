@@ -1,0 +1,45 @@
+From: Klee Dienes <klee.dienes@hadronindustries.com>
+Date: Fri, 21 Feb 2014 12:13:10 -0500
+Subject: Add CMake support.
+
+---
+ CMakeLists.txt | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..8558e41
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,30 @@
++cmake_minimum_required (VERSION 2.8.8)
++
++project (madgwick-ahrs)
++include (GNUInstallDirs)
++
++include_directories (src)
++
++set(MADGWICK_SRCS MadgwickAHRS/MadgwickAHRS.c MahonyAHRS/MahonyAHRS.c)
++set(MADGWICK_HDRS MadgwickAHRS/MadgwickAHRS.h MahonyAHRS/MahonyAHRS.h)
++
++add_library(madgwick-ahrs-shared SHARED ${MADGWICK_SRCS} ${MADGWICK_HDRS})
++add_library(madgwick-ahrs-static STATIC ${MADGWICK_SRCS} ${MADGWICK_HDRS})
++
++set_target_properties(madgwick-ahrs-shared PROPERTIES SOVERSION 0)
++set_target_properties(madgwick-ahrs-shared PROPERTIES OUTPUT_NAME madgwick-ahrs)
++set_target_properties(madgwick-ahrs-static PROPERTIES OUTPUT_NAME madgwick-ahrs)
++
++target_link_libraries(madgwick-ahrs-shared m)
++
++install (TARGETS madgwick-ahrs-shared
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
++
++install (TARGETS madgwick-ahrs-static
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
++
++install (FILES ${MADGWICK_HDRS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/ahrs)

@@ -1,0 +1,5 @@
+madgwick-ahrs (0.0.20120219-1) unstable; urgency=low
+
+  * Initial packaging. (Closes: #740858)
+
+ -- Klee Dienes <klee@mit.edu>  Thu, 13 Feb 2014 07:53:01 -0500

@@ -1,0 +1,5 @@
+libmadgwick-ahrs.so.0 libmadgwick-ahrs0 #MINVER#
+ MadgwickAHRSupdate@Base 0.0.20120219-1~
+ MadgwickAHRSupdateIMU@Base 0.0.20120219-1~
+ MahonyAHRSupdate@Base 0.0.20120219-1~
+ MahonyAHRSupdateIMU@Base 0.0.20120219-1~
